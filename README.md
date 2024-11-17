@@ -37,7 +37,116 @@ Data will be collected (scrapped) from the [Web Gallery of Art](https://www.wga.
 - Data collection scripts and verification  (~5 hours)
 - Small model creation (~3? hours)
 - Small model testing (~30 min)
-- Piplene creation (~1 hours)
+- Pipeline creation (~1 hours)
 - Model training ( ?0 hours )
 - Proof of concept testing (~30 min)
 - Web dashboard interface (~4 hours)
+
+
+# Phase 1 Results
+
+Progress :
+
+- Data Scraping ✅
+- Images Scraping ✅
+- Data Preprocessing ✅
+- Train Indexes Pre-computation ✅
+- Pipeline base model ✅
+- Basic embedding modeling ✅
+- Base tests and Approximation algorithms for search ❌
+- Full model train and test ❌
+- UI application ❌
+
+## Details 
+
+### Data Scraping
+
+Deliverables:
+
+>/data (Retrieved data)
+
+>/data_mining (Notebooks)
+
+As mentioned in task description, the data is scraped from [Web Gallery of Art](https://www.wga.hu/index.html)
+
+DataScraping.ipynb Is collecting the Artist (style, name, period ... ) data and combines it with art pieces data(img_catalog.txt) collected from website. Additionally basic data transformation is done.
+
+### Data Scraping
+
+Deliverables:
+
+>/image_data (Retrieved data)
+
+>/data_mining (Notebooks)
+
+DataScraping.ipynb Is downloading images. Broken links are removed.
+
+
+### Train Indexes Pre-computation
+
+Deliverables:
+
+>/indexes_data (Retrieved data)
+
+>/Create_full_test_set.ipynb
+>/Create_mini_test_set.ipynb
+
+Full data set considers:
+
+Each image has school type and style, as characteristics. For training purposes each image (anchor) contains a set of all Ideal positive examples and all set of Ideal negative examples. Ideal means (**full** characteristics match or not match). 
+
+For efficiency the data split into groups(f.e. French - Impressionism - Landscape ) as all of this group will have the same negative and positive examples.
+
+The mini data (used for evaluation and as a test) is considers only one characteristic (style (as the most difficult)). Everything is the same.
+
+
+### Pipeline base model
+
+>/model (Trained model)
+
+>/BaseLine_pipe.ipynb 
+
+
+The basic model is can be represented as follows:
+
+![piplene](readme_images\pipline.png)
+
+Where the x1 and x2 are images. (Anchor and positive or negative example)
+
+f0 is the CNN model.
+
+Features are Fully connected layers, that are being trained.
+
+Comparison is Contrastive loss function.
+
+![piplene](readme_images\formula.png)
+
+
+For the data, custom dataset and dataloader are created.
+
+For the base model, the pre-trained 
+
+>ShuffleNet_V2_X1
+
+was used as lightweight CNN layers for feature extraction.
+
+### Model modification
+
+For the training purposed the CNN layers are frozen and the last clarification layers are replaced with dense layers.
+
+
+### Basic embedding modeling
+
+>/Show_Embeddings.ipynb
+
+>/space.png
+
+The notebook is using the trained baseline model for creating basic embeddings for small subset of mini_test_set.
+
+The embedding are later projected to 2d space with UMAP and displayed on graph.
+
+
+![space](readme_images\space.png)
+
+
+One can observe that Model is creating some more-less meaningful clusters.  
