@@ -153,4 +153,22 @@ The embedding is later projected to 2d space with UMAP and displayed on the grap
 ![space](readme_images/space.png)
 
 
-One can observe that the Model is creating some more-less meaningful clusters.  
+One can observe that the Model is creating some more-less meaningful clusters.
+
+
+### Results
+
+The small test model showed a marginal difference in "pairwise" distance to positive and negative items. Unfortunately, there is no much sense in a complete test as the data was represented by just a fraction with a super light model.
+
+### Time spent📅
+
+- Additional research on the topic (3 hours)
+- Data collection scripts and verification  (6 hours)
+- Small model creation (1 hour)
+- Small model testing (3 hours)
+- Pipeline creation (4 hours)
+
+  
+
+
+
