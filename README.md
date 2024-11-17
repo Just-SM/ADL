@@ -71,7 +71,7 @@ Deliverables:
 
 >/data_mining (Notebooks)
 
-As mentioned in task description, the data is scraped from [Web Gallery of Art](https://www.wga.hu/index.html)
+As mentioned in the task description, the data is scraped from [Web Gallery of Art](https://www.wga.hu/index.html)
 
 DataScraping.ipynb Is collecting the Artist (style, name, period ... ) data and combines it with art pieces data(img_catalog.txt) collected from website. Additionally basic data transformation is done.
 
@@ -95,13 +95,13 @@ Deliverables:
 >/Create_full_test_set.ipynb
 >/Create_mini_test_set.ipynb
 
-Full data set considers:
+The full data set considers:
 
-Each image has school type and style, as characteristics. For training purposes each image (anchor) contains a set of all Ideal positive examples and all set of Ideal negative examples. Ideal means (**full** characteristics match or not match). 
+Each image has school type and style, as characteristics. For training purposes, each image (anchor) contains a set of all Ideal positive examples and all set of Ideal negative examples. Ideal means (**full** characteristics match or not match). 
 
-For efficiency the data split into groups(f.e. French - Impressionism - Landscape ) as all of this group will have the same negative and positive examples.
+For efficiency, the data is split into groups(f.e. French - Impressionism - Landscape ) as all of this group will have the same negative and positive examples.
 
-The mini data (used for evaluation and as a test) is considers only one characteristic (style (as the most difficult)). Everything is the same.
+The mini data (used for evaluation and as a test) considers only one characteristic (style (as the most difficult)). Everything is the same.
 
 
 ### Pipeline base model
@@ -111,9 +111,9 @@ The mini data (used for evaluation and as a test) is considers only one characte
 >/BaseLine_pipe.ipynb 
 
 
-The basic model is can be represented as follows:
+The basic model can be represented as follows:
 
-![piplene](readme_images\pipline.png)
+![piplene](readme_images/pipline.png)
 
 Where the x1 and x2 are images. (Anchor and positive or negative example)
 
@@ -121,12 +121,12 @@ f0 is the CNN model.
 
 Features are Fully connected layers, that are being trained.
 
-Comparison is Contrastive loss function.
+Comparison is a Contrastive loss function.
 
-![piplene](readme_images\formula.png)
+![piplene](readme_images/formula.png)
 
 
-For the data, custom dataset and dataloader are created.
+For the data, a custom dataset and dataloader are created.
 
 For the base model, the pre-trained 
 
@@ -145,12 +145,12 @@ For the training purposed the CNN layers are frozen and the last clarification l
 
 >/space.png
 
-The notebook is using the trained baseline model for creating basic embeddings for small subset of mini_test_set.
+The notebook uses the trained baseline model for creating basic embeddings for a small subset of mini_test_set.
 
-The embedding are later projected to 2d space with UMAP and displayed on graph.
-
-
-![space](readme_images\space.png)
+The embedding is later projected to 2d space with UMAP and displayed on the graph.
 
 
-One can observe that Model is creating some more-less meaningful clusters.  
+![space](readme_images/space.png)
+
+
+One can observe that the Model is creating some more-less meaningful clusters.  
