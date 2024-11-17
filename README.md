@@ -59,6 +59,10 @@ Progress :
 
 ## Details 
 
+>❗
+> THE **FULL INDEXES** files ARE **NOT UPDATED** (GIT  size limitation).
+
+
 ### Data Scraping
 
 Deliverables:
