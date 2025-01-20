@@ -1,37 +1,82 @@
-# ImageToVec encoder for proximity search.
+# Phase 2 Results
 
-## Reference papers 📃:
-- [SimCLR. A Simple Framework for Contrastive Learning of Visual Representations.](https://arxiv.org/abs/2002.05709)
-- [Clustering-based Contrastive Learning for Improving Face Representations](https://arxiv.org/pdf/2004.02195)
-- [Locality-Sensitive Hashing for Finding Nearest Neighbors](https://ieeexplore.ieee.org/abstract/document/4472264)
-- ...
+## Progress :
 
-## Topic 
+- Data Scraping ✅
+- Images Scraping ✅
+- Data Preprocessing ✅
+- Train Indexes Pre-computation ✅
+- Pipeline base model ✅
+- Basic embedding modeling ✅
+- Base tests and Approximation algorithms for search ✅
+- Full model train and test ✅
+- UI application ✅
 
-### *Computer Vision* 🤖
+## Added:
+- CI integration with pre-hooks ✅
+- Docker compose build ✅
 
-Image encoding to vector space.
+## Major structure changes:
+
+- Clarified project structure.
+- Migrated to script base development. (With exception of data_mining)
+- Dataloader overhaul. Now with plane CSV.
+- Moved from author school of art to time period painting feature. (The author school data is extremely hard to predict )
+
+## New structure:
+```
+|
++-- data    # Contains Image data, model parameters and Image embeddings
+|   |- art_data_loaded.csv  # Images metadata
+|   |- embeddings.pth   # Precomputed Images embeddings
+|   |- model.pth    # Model weights
+|
++-- data_mining    # Images and images metadata scraping notebooks
+|   |- DataScraping.ipynb   # Collect images metadata
+|   |- ImagesScraping.ipynb   # Download Images
+|
++-- dataloaders   # Torch Dataset and Dataloader provider
+|   |- PaintingDatasets.py   # Torch Dataset and Dataloader
+|
++-- models   # Torch model
+|   |- MulitTaskModel.py   # Model and Evaluation
+|
++-- notebooks   # Old notebooks for embeddings
+|   |- Show_Embedings.ipynb   # Umap projection plot
+|
++-- scripts   # Runner scripts for model training and embedding creation
+|   |- generate_embedding.py   # Embeddings generation
+|   |- train.py   # Train loop
+|
++-- test   # Unit tests for model and Dataset/Dataloader
+|   |- test_model.py   # Model tests
+|   |- test_paintings_dataset.py   # Dataset and Dataloader tests
+|
++-- streamlit_app.py  # Web application runner 
++-- requirements.txt  # Requirements for the project
+
+```
+
+## Metrics and results:
+
+Planned 
+🎯 Style/Date/Type Precision: >= 0.75
+
+Achieved
+
+Style Accuracy @1: 37.77%
+Style Accuracy @3: 78.25%✅
+Date Accuracy @1: 56.57%
+Date Accuracy @3: 93.15%✅
+Type Accuracy @1: 66.33%
+Type Accuracy @3: 90.30%✅
+
+Validation Top-1 Accuracy for Style: 37.77%
+Validation Top-1 Accuracy for Date: 56.57%
+Validation Top-1 Accuracy for Type: 66.33%
 
 
-
-
-## Project type 
-
-### *Hybrid*
-Combination of **Bring your data** and **Bring your method**.
-
-## Project description
-
-### Idea 🖼️
-The core idea is to encode the image to a vector space for future proximity search and clustering.
-
-In particular, I am interested in painting. Imagine painting something and then finding out which style, years, school, or authors it is most similar to.
-
-### Model and Techniques 🔧
-The current plan is to train/fine-tune CNN with Contrast learning techniques to create an Image encoder. Later, some locality approximation algorithms will be used to optimize search and clustering.
-
-### Data 💾
-Data will be collected (scrapped) from the [Web Gallery of Art](https://www.wga.hu/index.html), which has approximately 50,000 art pieces and 6,000 authors. Of course, some additional sources might be considered.
+# ~~Phase 1 Results~~ **_Outdated_**
 
 ## Plan of Work 📅
 
@@ -43,9 +88,6 @@ Data will be collected (scrapped) from the [Web Gallery of Art](https://www.wga.
 - Model training ( ?0 hours )
 - Proof of concept testing (~30 min)
 - Web dashboard interface (~4 hours)
-
-
-# Phase 1 Results
 
 Progress :
 
