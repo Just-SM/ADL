@@ -82,9 +82,8 @@ In order ⬇️
 
 - DataScraping.ipynb (Put results in _data_)
 - ImagesScraping.ipynb (Put results in _data_)
-- py train.py 
-- py generate_embedding.py
-- py generate_embedding.py
+- `py train.py `
+- `py generate_embedding.py`
 
 # ~~Phase 1 Results~~ **_Outdated_**
 
