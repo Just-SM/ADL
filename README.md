@@ -46,7 +46,7 @@ The core idea is to encode the image to a vector space for future proximity sear
 In particular, I am interested in painting. Imagine painting something and then finding out which style, years, school, or authors it is most similar to.
 
 ### Model and Techniques 🔧
-The current plan is to train/fine-tune CNN with Contrast learning techniques to create an Image encoder. Later, some locality approximation algorithms will be used to optimize search and clustering.
+The current plan is to fine-tune CNN with Contrast learning techniques to create an Image encoder. Later, NN algorithm is used to search for similar paintings. Final results of clarification resolved by majority voting of neighbors.
 
 ### Data 💾
 Data will be collected (scrapped) from the [Web Gallery of Art](https://www.wga.hu/index.html), which has approximately 50,000 art pieces and 6,000 authors. Of course, some additional sources might be considered.
