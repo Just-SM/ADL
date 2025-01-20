@@ -13,6 +13,8 @@
 Image encoding to vector space.
 
 
+
+
 ## Project type 
 
 ### *Hybrid*
