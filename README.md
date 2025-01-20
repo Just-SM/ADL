@@ -76,6 +76,15 @@ Achieved:
 - Validation Top-1 Accuracy for Date: 56.57%
 - Validation Top-1 Accuracy for Type: 66.33%
 
+## To reproduce:
+
+In order ⬇️
+
+- DataScraping.ipynb (Put results in _data_)
+- ImagesScraping.ipynb (Put results in _data_)
+- py train.py 
+- py generate_embedding.py
+- py generate_embedding.py
 
 # ~~Phase 1 Results~~ **_Outdated_**
 
