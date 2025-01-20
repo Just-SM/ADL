@@ -1,6 +1,6 @@
 # ImageToVec encoder for proximity search.
 
-![alt text](readme_images\\main.png)
+![alt text](readme_images//main.png)
 
 ## How to run ?
 
