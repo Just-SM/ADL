@@ -5,10 +5,9 @@
 - Data Scraping ✅
 - Images Scraping ✅
 - Data Preprocessing ✅
-- Train Indexes Pre-computation ✅
 - Pipeline base model ✅
 - Basic embedding modeling ✅
-- Base tests and Approximation algorithms for search ✅
+- Base tests and Approximation algorithm for search ✅
 - Full model train and test ✅
 - UI application ✅
 
