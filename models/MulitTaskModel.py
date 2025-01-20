@@ -2,7 +2,8 @@ import torch.nn as nn
 import torch
 from torchvision.models import mobilenet_v3_small, MobileNet_V3_Small_Weights
 
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
 
 def evaluate(model, val_loader):
     model.eval()
@@ -21,7 +22,9 @@ def evaluate(model, val_loader):
             style_out, date_out, type_out, emb = model(images)
 
             # Predictions
-            _, predicted_style_1 = torch.max(style_out, 1)  # Top-1 predictions for style
+            _, predicted_style_1 = torch.max(
+                style_out, 1
+            )  # Top-1 predictions for style
             _, predicted_date_1 = torch.max(date_out, 1)  # Top-1 predictions for date
             _, predicted_type_1 = torch.max(type_out, 1)  # Top-1 predictions for type
 
@@ -36,9 +39,24 @@ def evaluate(model, val_loader):
             correct_type_1 += (predicted_type_1 == labels_type).sum().item()
 
             # Increment correct counts for Top-3
-            correct_style_3 += sum([labels_style[i] in predicted_style_3[i] for i in range(labels_style.size(0))])
-            correct_date_3 += sum([labels_date[i] in predicted_date_3[i] for i in range(labels_date.size(0))])
-            correct_type_3 += sum([labels_type[i] in predicted_type_3[i] for i in range(labels_type.size(0))])
+            correct_style_3 += sum(
+                [
+                    labels_style[i] in predicted_style_3[i]
+                    for i in range(labels_style.size(0))
+                ]
+            )
+            correct_date_3 += sum(
+                [
+                    labels_date[i] in predicted_date_3[i]
+                    for i in range(labels_date.size(0))
+                ]
+            )
+            correct_type_3 += sum(
+                [
+                    labels_type[i] in predicted_type_3[i]
+                    for i in range(labels_type.size(0))
+                ]
+            )
 
             total += labels_style.size(0)
 
@@ -57,8 +75,14 @@ def evaluate(model, val_loader):
     print(f"Date Accuracy @3: {date_accuracy_3:.2f}%")
     print(f"Type Accuracy @1: {type_accuracy_1:.2f}%")
     print(f"Type Accuracy @3: {type_accuracy_3:.2f}%")
-    return style_accuracy_1, date_accuracy_1, type_accuracy_1, style_accuracy_3, date_accuracy_3, type_accuracy_3
-
+    return (
+        style_accuracy_1,
+        date_accuracy_1,
+        type_accuracy_1,
+        style_accuracy_3,
+        date_accuracy_3,
+        type_accuracy_3,
+    )
 
 
 class MultiTaskModel(nn.Module):
@@ -66,14 +90,14 @@ class MultiTaskModel(nn.Module):
         super(MultiTaskModel, self).__init__()
         weights = MobileNet_V3_Small_Weights.DEFAULT
         backbone = mobilenet_v3_small(weights=weights)
-        
+
         self.feature_extractor = backbone.features  # Extract features from MobileNetV3
         self.avgpool = nn.AdaptiveAvgPool2d((1, 1))  # Add pooling layer
         feature_dim = backbone.classifier[0].in_features  # Dimension of feature output
 
         # Task-specific heads
         self.fc_style = nn.Linear(feature_dim, num_classes_style)  # Style head
-        self.fc_date= nn.Linear(feature_dim, num_classes_date)  # date head
+        self.fc_date = nn.Linear(feature_dim, num_classes_date)  # date head
         self.fc_type = nn.Linear(feature_dim, num_classes_type)  # Type head
 
         self.fc_first_emb = nn.Linear(feature_dim, 256)  # Embedding layer
@@ -83,7 +107,9 @@ class MultiTaskModel(nn.Module):
     def forward(self, x):
         features = self.feature_extractor(x)  # Extract features
         features = self.avgpool(features)  # Pool to (batch_size, feature_dim, 1, 1)
-        features = features.view(features.size(0), -1)  # Flatten to (batch_size, feature_dim)
+        features = features.view(
+            features.size(0), -1
+        )  # Flatten to (batch_size, feature_dim)
 
         # Task-specific outputs
         style_out = self.fc_style(features)

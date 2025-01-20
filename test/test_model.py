@@ -1,7 +1,8 @@
 import sys
 import os
+
 # Add the project root directory to sys.path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 
 import pytest
@@ -10,13 +11,15 @@ from torch.utils.data import DataLoader, Dataset
 from models.MulitTaskModel import MultiTaskModel, evaluate
 
 
-
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 class DummyDataset(Dataset):
     """A dummy dataset for testing purposes."""
-    def __init__(self, num_samples, num_classes_style, num_classes_date, num_classes_type):
+
+    def __init__(
+        self, num_samples, num_classes_style, num_classes_date, num_classes_type
+    ):
         self.num_samples = num_samples
         self.num_classes_style = num_classes_style
         self.num_classes_date = num_classes_date
@@ -44,7 +47,9 @@ def dummy_dataloader():
     num_classes_date = 4
     num_classes_type = 3
 
-    dataset = DummyDataset(num_samples, num_classes_style, num_classes_date, num_classes_type)
+    dataset = DummyDataset(
+        num_samples, num_classes_style, num_classes_date, num_classes_type
+    )
     dataloader = DataLoader(dataset, batch_size=2)
     return dataloader, num_classes_style, num_classes_date, num_classes_type
 
@@ -66,14 +71,26 @@ def test_model_forward_pass(multitask_model):
     model = multitask_model
     batch_size = 4
     dummy_input = torch.rand(batch_size, 3, 224, 224).to(device)
-    
+
     style_out, school_out, type_out, embeddings = model(dummy_input)
 
     # Check output dimensions
-    assert style_out.shape == (batch_size, model.fc_style.out_features), "Style output shape mismatch."
-    assert school_out.shape == (batch_size, model.fc_date.out_features), "Date output shape mismatch."
-    assert type_out.shape == (batch_size, model.fc_type.out_features), "Type output shape mismatch."
-    assert embeddings.shape == (batch_size, model.fc_first_emb.in_features), "Embedding output shape mismatch."
+    assert style_out.shape == (
+        batch_size,
+        model.fc_style.out_features,
+    ), "Style output shape mismatch."
+    assert school_out.shape == (
+        batch_size,
+        model.fc_date.out_features,
+    ), "Date output shape mismatch."
+    assert type_out.shape == (
+        batch_size,
+        model.fc_type.out_features,
+    ), "Type output shape mismatch."
+    assert embeddings.shape == (
+        batch_size,
+        model.fc_first_emb.in_features,
+    ), "Embedding output shape mismatch."
 
 
 def test_evaluate_function(multitask_model, dummy_dataloader):
@@ -86,5 +103,9 @@ def test_evaluate_function(multitask_model, dummy_dataloader):
 
     # Ensure results are returned for all accuracy metrics
     assert len(results) == 6, "Evaluate function should return 6 accuracy values."
-    assert all(isinstance(acc, float) for acc in results), "All returned accuracy values should be floats."
-    assert all(0 <= acc <= 100 for acc in results), "Accuracy values should be between 0 and 100."
+    assert all(
+        isinstance(acc, float) for acc in results
+    ), "All returned accuracy values should be floats."
+    assert all(
+        0 <= acc <= 100 for acc in results
+    ), "Accuracy values should be between 0 and 100."
