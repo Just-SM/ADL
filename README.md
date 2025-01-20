@@ -59,21 +59,23 @@
 
 ## Metrics and results:
 
-Planned 
+Planned:
+
 🎯 Style/Date/Type Precision: >= 0.75
 
-Achieved
+Achieved:
 
-Style Accuracy @1: 37.77%
-Style Accuracy @3: 78.25%✅
-Date Accuracy @1: 56.57%
-Date Accuracy @3: 93.15%✅
-Type Accuracy @1: 66.33%
-Type Accuracy @3: 90.30%✅
+- Style Accuracy @1: 37.77%
+- Style Accuracy @3: 78.25%✅
+- Date Accuracy @1: 56.57%
+- Date Accuracy @3: 93.15%✅
+- Type Accuracy @1: 66.33%
+- Type Accuracy @3: 90.30%✅
 
-Validation Top-1 Accuracy for Style: 37.77%
-Validation Top-1 Accuracy for Date: 56.57%
-Validation Top-1 Accuracy for Type: 66.33%
+
+- Validation Top-1 Accuracy for Style: 37.77%
+- Validation Top-1 Accuracy for Date: 56.57%
+- Validation Top-1 Accuracy for Type: 66.33%
 
 
 # ~~Phase 1 Results~~ **_Outdated_**
