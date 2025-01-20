@@ -30,6 +30,10 @@ Adapted with : Multi Parameter Clarification task with painting data.
 
 ~~Fine tuned: with Contrastive learning for vector embedding.~~ _Showed to be ineffective. More details in report._
 
+## Neighbor search:
+
+Brute NN. Final classification result decided by majority of the neighbors.
+
 ## New structure:
 ```
 |
