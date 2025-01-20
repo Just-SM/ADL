@@ -22,6 +22,14 @@
 - Dataloader overhaul. Now with plane CSV.
 - Moved from author school of art to time period painting feature. (The author school data is extremely hard to predict )
 
+## Model structure:
+
+Base: mobilenet_v3_small from pytorch
+
+Adapted with : Multi Parameter Clarification task with painting data.
+
+~~Fine tuned: with Contrastive learning for vector embedding.~~ _Showed to be ineffective. More details in report._
+
 ## New structure:
 ```
 |
